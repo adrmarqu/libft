@@ -6,7 +6,7 @@
 #    By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/30 16:54:34 by adrmarqu          #+#    #+#              #
-#    Updated: 2025/08/30 18:09:15 by adrmarqu         ###   ########.fr        #
+#    Updated: 2025/08/30 18:37:17 by adrmarqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 NAME = libft.a
 
-SRC = ft_alphanum.c ft_ascii.c ft_ato.c
+SRC = ft_alphanum.c ft_ascii.c ft_ato.c ft_strl.c ft_compare.c #ft_search.c 
 
 ALL_D = ./sources/alloc/
 CHR_D = ./sources/char/
