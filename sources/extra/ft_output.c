@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ctype.h                                            :+:      :+:    :+:   */
+/*   ft_output.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/30 17:42:10 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/01 13:45:11 by adrmarqu         ###   ########.fr       */
+/*   Created: 2025/09/01 14:26:25 by adrmarqu          #+#    #+#             */
+/*   Updated: 2025/09/01 15:03:43 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CTYPE_H
-# define CTYPE_H
+#include "../../inc/string.h"
+#include "../../inc/extra.h"
 
-# include <stdbool.h>
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
 
-bool	ft_isalpha(int c);
-bool	ft_isdigit(int c);
-bool	ft_isalnum(int c);
-bool	ft_isspace(int c);
-bool	ft_isxdigit(int c);
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (s)
+		write(fd, s, ft_strlen(s));
+}
 
-bool	ft_isascii(int c);
-bool	ft_isprint(int c);
+void	ft_putendl_fd(char *s, int fd)
+{
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
+}
 
-bool	ft_isupper(int c);
-bool	ft_islower(int c);
+void	ft_putnbr_fd(int n, int fd)
+{
+	char	*nbr;
 
-bool	ft_isgraph(int c);
-
-int		ft_toupper(int c);
-int		ft_tolower(int c);
-
-#endif
+	nbr = ft_itoa(n);
+	ft_putstr_fd(nbr, fd);
+	free(nbr);
+}

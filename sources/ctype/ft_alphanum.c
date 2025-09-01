@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 17:18:08 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/08/30 17:29:20 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/01 13:53:33 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ bool	ft_isalnum(int c)
 
 bool	ft_isspace(int c)
 {
-	return (c == ' ');
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
 }
 
 bool	ft_isxdigit(int c)

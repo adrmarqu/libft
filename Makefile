@@ -6,7 +6,7 @@
 #    By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/30 16:54:34 by adrmarqu          #+#    #+#              #
-#    Updated: 2025/08/30 18:37:17 by adrmarqu         ###   ########.fr        #
+#    Updated: 2025/09/01 14:24:38 by adrmarqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,9 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 NAME = libft.a
 
-SRC = ft_alphanum.c ft_ascii.c ft_ato.c ft_strl.c ft_compare.c #ft_search.c 
+SRC = ft_alphanum.c ft_ascii.c ft_ato.c ft_strl.c ft_compare.c ft_search.c \
+	  ft_mem.c ft_fill.c ft_convert.c ft_alloc.c
 
-ALL_D = ./sources/alloc/
-CHR_D = ./sources/char/
 CTP_D = ./sources/ctype/
 EXT_D = ./sources/extra/
 STR_D = ./sources/string/
@@ -39,7 +38,7 @@ all: ${NAME}
 $(NAME): $(OBJ)
 	@$(LIB) $(NAME) $(OBJ)
 
-vpath %.c $(ALL_D) $(CHR_D) $(CTP_D) $(EXT_D) $(STR_D) $(MEM_D)
+vpath %.c $(CTP_D) $(EXT_D) $(STR_D) $(MEM_D)
 
 $(OBJ_D)%.o: %.c Makefile | $(OBJ_D) $(DEP_D)
 	$(CC) $(CFLAGS) -MMD -MF $(DEP_D)$*.d -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:17:13 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/08/30 18:38:24 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/01 13:57:02 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 {
 	const int	tmp = check_strings(s1, s2);
 	size_t		i;
-	
+
 	if (tmp != 42)
 		return (tmp);
 	i = 0;

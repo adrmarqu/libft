@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ctype.h                                            :+:      :+:    :+:   */
+/*   ft_fill.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/30 17:42:10 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/01 13:45:11 by adrmarqu         ###   ########.fr       */
+/*   Created: 2025/09/01 12:46:46 by adrmarqu          #+#    #+#             */
+/*   Updated: 2025/09/01 13:56:42 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CTYPE_H
-# define CTYPE_H
+#include <stddef.h>
 
-# include <stdbool.h>
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*mem;
 
-bool	ft_isalpha(int c);
-bool	ft_isdigit(int c);
-bool	ft_isalnum(int c);
-bool	ft_isspace(int c);
-bool	ft_isxdigit(int c);
+	i = 0;
+	mem = (unsigned char *)s;
+	while (i < n)
+		mem[i++] = 0;
+}
 
-bool	ft_isascii(int c);
-bool	ft_isprint(int c);
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*mem;
 
-bool	ft_isupper(int c);
-bool	ft_islower(int c);
-
-bool	ft_isgraph(int c);
-
-int		ft_toupper(int c);
-int		ft_tolower(int c);
-
-#endif
+	i = 0;
+	mem = (unsigned char *)s;
+	while (i < n)
+		mem[i++] = (unsigned char)c;
+	return (s);
+}

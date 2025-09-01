@@ -6,18 +6,28 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:19:26 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/08/30 18:27:08 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/01 14:12:51 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+
+size_t	ft_splitlen(char **split)
+{
+	size_t	size;
+
+	size = 0;
+	while (split && split[size])
+		size++;
+	return (size);
+}
 
 size_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
 	len = 0;
-	while (s[len])
+	while (s && s[len])
 		len++;
 	return (len);
 }
