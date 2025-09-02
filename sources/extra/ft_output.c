@@ -6,12 +6,14 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 14:26:25 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/01 15:03:43 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:47:35 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/string.h"
 #include "../../inc/extra.h"
+#include <unistd.h>
+#include <stdlib.h>
 
 void	ft_putchar_fd(char c, int fd)
 {
