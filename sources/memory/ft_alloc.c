@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 13:58:13 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/01 14:22:40 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:16:32 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,21 @@ char	*ft_strdup(const char *s)
 		str[i] = s[i];
 		i++;
 	}
+	return (str);
+}
+
+char	*ft_strndup(const char *s, size_t n)
+{
+	size_t	len;
+	char	*str;
+
+	len = 0;
+	while (len < n && s[len])
+		len++;
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_memcpy(str, s, len);
 	return (str);
 }
 
