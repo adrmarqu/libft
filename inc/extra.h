@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 14:28:32 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/02 13:56:42 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:26:41 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ char	*ft_threejoin(char const *s1, const char *s2, char const *s3);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+int		ft_putchar_fd(char c, int fd);
+int		ft_putstr_fd(char *s, int fd);
+int		ft_putendl_fd(char *s, int fd);
+int		ft_putnbr_fd(int n, int fd);
 
 size_t	ft_base_longlen(size_t n, size_t base);
 size_t	ft_longlen(size_t n);
