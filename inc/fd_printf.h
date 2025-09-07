@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:18:23 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/04 20:51:08 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/07 13:41:03 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_flag
 	bool	alter;
 	bool	space;
 	bool	sign;
+	char	symbol_sign;
 	int		precision;
 	int		width;
 	char	specifier;
@@ -100,12 +101,13 @@ size_t	get_precision(const char *s, t_flag *flags);
 void	nullify_flags(t_flag *f);
 
 void	put_char(char c, t_printf *data);
-void	put_string(const char *str, t_printf *data);
+void	put_str(const char *str, t_printf *data);
 void	put_dir(unsigned long n, t_printf *data);
 void	put_nbr(int n, t_printf *data);
 void	put_unbr(unsigned int n, t_printf *data);
 void	put_hex(unsigned int n, t_printf *data);
 
+void	put_string(const char *str, t_printf *data);
 void	ft_write(t_printf *data);
 
 #endif

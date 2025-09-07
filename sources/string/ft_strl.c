@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:19:26 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/01 14:12:51 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/07 12:44:21 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,20 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		dst[j++] = src[i++];
 	dst[j] = '\0';
 	return (j + ft_strlen(&src[i]));
+}
+
+void	ft_reverse(char *s)
+{
+	int		i;
+	int		j;
+	char	c;
+
+	i = 0;
+	j = ft_strlen(s) - 1;
+	while (i < j)
+	{
+		c = s[i];
+		s[i++] = s[j];
+		s[j--] = c;
+	}
 }

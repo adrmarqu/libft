@@ -6,7 +6,7 @@
 #    By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/30 16:54:34 by adrmarqu          #+#    #+#              #
-#    Updated: 2025/09/04 20:32:13 by adrmarqu         ###   ########.fr        #
+#    Updated: 2025/09/07 14:54:06 by adrmarqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME = libft.a
 SRC = ft_alphanum.c ft_ascii.c ft_ato.c ft_strl.c ft_compare.c ft_search.c	\
 	  ft_mem.c ft_fill.c ft_convert.c ft_alloc.c ft_map.c ft_strings.c		\
 	  ft_join.c ft_output.c ft_length.c ft_itoa.c ft_split.c fd_printf.c	\
-	  get_next_line.c handle_input.c flags.c print.c
+	  get_next_line.c ft_transform.c
 
 CTP_D = ./sources/ctype/
 EXT_D = ./sources/extra/

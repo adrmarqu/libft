@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 13:00:39 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/02 14:17:01 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/07 14:52:18 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_free_split(char **split);
 
+char	*ft_char_to_string(char c);
 char	*ft_strdup(const char *s);
 char	*ft_strndup(const char *s, size_t n);
 char	**ft_splitdup(char **split);
