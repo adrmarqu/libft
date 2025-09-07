@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:18:23 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/07 13:41:03 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:53:16 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,55 +17,7 @@
 
 # include <stdbool.h>
 # include <stddef.h>
-# include <stdarg.h>
 # include <stdio.h>
-
-/*
-
-   %[flags][width][.precision][length]specifier
-
-   length -> ll, l, h... ej: %lld
-
-d, i → enteros con signo.
-
-u → enteros sin signo.
-
-x, X → hexadecimal (minúsculas/mayúsculas).
-
-o → octal.
-
-f, F → coma flotante (ej: 3.14).
-
-e, E → notación científica (1.23e+02).
-
-g, G → elige entre %f o %e.
-
-c → un carácter.
-
-s → string (char *).
-
-p → puntero (dirección en memoria).
-
-% → imprime % literal.
-
-
-   % -> c s p d i u x X %
-
-   ' ': d i
-   '.': s d i u x X
-   '#': x X
-   '-': all
-   '0': d i u x X; si esta '-' no funciona
-   '+': d i
-
-   Combinations
-
-   "0-": Se ignora 0
-   "+ ": Se ignora ' '
-   "0.": Se ignora el width ej: %08.5d(42) -> "   00042"
-   "+ 0#": Estos flags con %cs se ignoran
-
-*/
 
 typedef struct s_flag
 {

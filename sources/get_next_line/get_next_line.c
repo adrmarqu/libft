@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:21:21 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/02 14:24:00 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/07 17:15:04 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static char	*get_next_buffer(char *s)
 	return (free(s), str);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*buffer[300];
 	char		*line;

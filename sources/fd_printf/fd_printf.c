@@ -6,7 +6,7 @@
 /*   By: adrmarqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:00 by adrmarqu          #+#    #+#             */
-/*   Updated: 2025/09/07 15:07:44 by adrmarqu         ###   ########.fr       */
+/*   Updated: 2025/09/07 17:19:48 by adrmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <stdarg.h>
 #include <limits.h>
 
-size_t	get_flags(const char *s, t_flag *flags)
+size_t	parse_flags(const char *s, t_flag *flags)
 {
 	size_t	i;
 
@@ -44,7 +44,7 @@ size_t	get_flags(const char *s, t_flag *flags)
 	return (i);
 }
 
-size_t	get_width(const char *s, t_flag *flags)
+size_t	parse_width(const char *s, t_flag *flags)
 {
 	size_t	len;
 
@@ -57,7 +57,7 @@ size_t	get_width(const char *s, t_flag *flags)
 	return (len);
 }
 
-size_t	get_precision(const char *s, t_flag *flags)
+size_t	parse_precision(const char *s, t_flag *flags)
 {
 	size_t	len;
 
@@ -88,9 +88,9 @@ size_t	handle_flags(const char *s, t_printf *data)
 	size_t	len;
 
 	len = 1;
-	len += get_flags(s + 1, &data->flags);
-	len += get_width(s + len, &data->flags);
-	len += get_precision(s + len, &data->flags);
+	len += parse_flags(s + 1, &data->flags);
+	len += parse_width(s + len, &data->flags);
+	len += parse_precision(s + len, &data->flags);
 	data->flags.specifier = s[len++];
 	nullify_flags(&data->flags);
 	return (len);
@@ -228,7 +228,7 @@ size_t	handle_text(const char *s, t_printf *data)
 	return (free(tmp), free(str), len);
 }
 
-char	*set_zero(char *ret, const char *s, int n)
+char	*fill_zeros(char *ret, const char *s, int n)
 {
 	size_t	i;
 	size_t	length;
@@ -256,10 +256,9 @@ char	*add_zero(const char *s, int n)
 		ret = ft_calloc(ft_strlen(s) + n + 1, sizeof(char));
 		if (!ret)
 			return (NULL);
-		return (set_zero(ret, s, n));
+		return (fill_zeros(ret, s, n));
 	}
 	return (ft_strdup(s));
-
 }
 
 char	*cut_text(const char *s, int n)
@@ -312,21 +311,6 @@ char	*get_var(const char *s, t_flag f)
 	return (var);
 }
 
-char	*get_front(const char *var, t_flag f)
-{
-	int		length;
-	char	*front;
-
-	length = f.width - (int)ft_strlen(var);
-	if (length <= 0 || f.minus || f.zero)
-		return (ft_strdup(""));
-	front = ft_calloc(length + 1, sizeof(char));
-	if (!front)
-		return (NULL);
-	ft_memset(front, ' ', length);
-	return (front);
-}
-
 char	*get_prefix(t_flag f)
 {
 	if (f.sign)
@@ -340,74 +324,60 @@ char	*get_prefix(t_flag f)
 	return (ft_strdup(""));
 }
 
-char	*get_zero(const char *var, t_flag f)
+char	*fill_width(const char *var, int width, char c, bool condition)
 {
 	int		length;
-	char	*zero;
+	char	*fill;
 
-	length = f.width - (int)ft_strlen(var);
-	if (length <= 0 || !f.zero || f.minus)
+	length = width - (int)ft_strlen(var);
+	if (length <= 0 || !condition)
 		return (ft_strdup(""));
-	zero = ft_calloc(length + 1, sizeof(char));
-	if (!zero)
+	fill = ft_calloc(length + 1, sizeof(char));
+	if (!fill)
 		return (NULL);
-	ft_memset(zero, '0', length);
-	return (zero);
+	ft_memset(fill, c, length);
+	return (fill);
 }
 
-char	*get_back(const char *var, t_flag f)
-{
-	int		length;
-	char	*back;
-
-	length = f.width - (int)ft_strlen(var);
-	if (length <= 0 || !f.minus)
-		return (ft_strdup(""));
-	back = ft_calloc(length + 1, sizeof(char));
-	if (!back)
-		return (NULL);
-	ft_memset(back, ' ', length);
-	return (back);
-}
-
-// [front][sign/space/alter][zero][var(with precision)][back]
-
-char	*add_flags(const char *s, t_flag f)
+char	*add_half_flags(char *var, t_flag f)
 {
 	char	*front;
 	char	*prefix;
 	char	*zero;
-	char	*var;
-	char	*back;
 	char	*ret;
 
-	var = get_var(s, f);
-	if (!var)
-		return (NULL);
-	front = get_front(var, f);
+	front = fill_width(var, f.width, ' ', !f.minus && !f.zero);
 	if (!front)
 		return (NULL);
 	prefix = get_prefix(f);
 	if (!prefix)
 		return (NULL);
-	zero = get_zero(var, f);
+	zero = fill_width(var, f.width, '0', !f.minus && f.zero);
 	if (!prefix)
 		return (NULL);
-	back = get_back(var, f);
+	ret = ft_threejoin(front, prefix, zero);
+	return (free(front), free(prefix), free(zero), ret);
+}
+
+char	*add_flags(const char *s, t_flag f)
+{
+	char	*var;
+	char	*back;
+	char	*ret;
+	char	*tmp;
+
+	var = get_var(s, f);
+	if (!var)
+		return (NULL);
+	back = fill_width(var, f.width, ' ', f.minus);
 	if (!back)
 		return (NULL);
-
-	printf("FRONT: |%s|\n", front);
-	printf("PREFIX: |%s|\n", prefix);
-	printf("ZERO: |%s|\n", zero);
-	printf("VAR: |%s|\n", var);
-	printf("BACK: |%s|\n", back);
-
-	// Juntarlo
-	
-
-
-	return (NULL);
+	tmp = add_half_flags(var, f);
+	ret = ft_threejoin(tmp, var, back);
+	free(tmp);
+	free(var);
+	free(back);
+	return (ret);
 }
 
 void	put_string(const char *s, t_printf *data)
@@ -455,10 +425,35 @@ void	put_str(const char *str, t_printf *data)
 	put_string(str, data);
 }
 
-void	ft_write(t_printf *data)
+void	write_output(t_printf *data)
 {
 	data->length = ft_putstr_fd(data->output, data->fd);
 	free(data->output);
+}
+
+static void	set_flags(t_flag *f)
+{
+	f->minus = false;
+	f->zero = false;
+	f->alter = false;
+	f->space = false;
+	f->sign = false;
+	f->symbol_sign = '0';
+	f->precision = -1;
+	f->width = 0;
+	f->specifier = '0';
+}
+
+static void	set_struct(t_printf *data, int fd)
+{
+	t_flag	flags;
+
+	set_flags(&flags);
+	data->fd = fd;
+	data->error = false;
+	data->output = NULL;
+	data->length = 0;
+	data->flags = flags;
 }
 
 static void	ft_read(va_list lst, t_printf *data, const char *s)
@@ -471,30 +466,11 @@ static void	ft_read(va_list lst, t_printf *data, const char *s)
 				return ;
 			s += handle_flags(s, data);
 			handle_format(lst, data);
+			set_flags(&data->flags);
 		}
 		else
 			s += handle_text(s, data);
 	}
-}
-
-static void	init_struct(t_printf *data, int fd)
-{
-	t_flag	flags;
-
-	flags.minus = false;
-	flags.zero = false;
-	flags.alter = false;
-	flags.space = false;
-	flags.sign = false;
-	flags.symbol_sign = '0';
-	flags.precision = -1;
-	flags.width = 0;
-	flags.specifier = '0';
-	data->fd = fd;
-	data->error = false;
-	data->output = NULL;
-	data->length = 0;
-	data->flags = flags;
 }
 
 int	fd_printf(int fd, const char *s, ...)
@@ -505,10 +481,10 @@ int	fd_printf(int fd, const char *s, ...)
 	if (fd < 0 || !s || fd > FOPEN_MAX)
 		return (-1);
 	va_start(lst, s);
-	init_struct(&data, fd);
+	set_struct(&data, fd);
 	ft_read(lst, &data, s);
 	va_end(lst);
-	ft_write(&data);
+	write_output(&data);
 	if (data.error)
 		return (-1);
 	return (data.length);
